@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+
+<machine xmlns="x-schema:PowermillMachineTool" POST="SimPost.">
+
+  <!-- Where tool is attached -->
+  <head_attach_point PART="head" X="1720" Y="0" Z="1510" I="0" J="0" K="1" U="1" V="0" W="0" />
+  <!-- Offset of the world workplane -->
+  <table_attach_point PART="table" X="2000" Y="0" Z="730" I="0" J="0" K="1" U="1" V="0" W="0" />
+
+  <!-- List containing the groups to exclude from collision checking-->
+  <collision_exclusion_list>
+    <!-- no collision checking between "RobotBase" and "RobotAxis1"
+         as this kind of collision is actually impossible -->
+    <collision_exclusion_group>
+      <collision_exclusion_part NAME="RobotBase" />
+      <collision_exclusion_part NAME="RobotAxis1" />
+    </collision_exclusion_group>
+    <!-- no collision checking between "RotaryTableBase" and "RotaryTable"
+         as this kind of collision is actually impossible -->
+    <collision_exclusion_group>
+      <collision_exclusion_part NAME="RotaryTableBase" />
+      <collision_exclusion_part NAME="RotaryTable" />
+    </collision_exclusion_group>
+    <!-- no collision checking between "RotaryTable" and the PowerMILL model(s) -->
+    <collision_exclusion_group>
+      <collision_exclusion_part NAME="RotaryTable" />
+      <collision_exclusion_part NAME="model" />
+    </collision_exclusion_group>
+  </collision_exclusion_list>
+
+  <!-- Static entity -->
+  <machine_part NAME="RotaryTableBase">
+    <model_list>
+      <dmt_file>
+        <path FILE="KR300-R2500/RotaryTableStatic.dmt" />
+        <rgb R="50" G="50" B="50" />
+      </dmt_file>
+    </model_list>
+  </machine_part>
+
+  <!-- Static entity -->
+  <machine_part NAME="RobotBase">
+    <model_list>
+      <dmt_file>
+        <path FILE="KR300-R2500/BaseStatic.dmt" />
+        <rgb R="130" G="130" B="130" />
+      </dmt_file>
+      <dmt_file>
+        <path FILE="KR300-R2500/A.dmt" />
+        <rgb R="50" G="50" B="50" />
+      </dmt_file>
+    </model_list>
+  </machine_part>
+
+  <!-- The arm is controlled by 6 rotary axes -->
+  <machine_part NAME="RobotAxis1">
+    <axis>
+      <control_info ADDRESS="A" MIN="-185" MAX="185" PRIORITY="AUTO" HOME="0"/>
+      <simple_rotary X="0.0" Y="0.0" Z="0.0" I="0" J="0" K="-1" />
+    </axis>
+    <fixed_point NAME="CylinderAttachPoint" X="-446.956" Y="0.0" Z="605.275"/>
+    <model_list>
+      <dmt_file>
+        <path FILE="KR300-R2500/AB.dmt" />
+        <rgb R="255" G="110" B="0" />
+      </dmt_file>
+      <dmt_file>
+        <path FILE="KR300-R2500/ABMotor.dmt" />
+        <rgb R="50" G="50" B="50" />
+      </dmt_file>
+    </model_list>
+
+    <machine_part NAME="RobotAxis2">
+      <axis>
+        <control_info ADDRESS="B" MIN="-140" MAX="-5" PRIORITY="AUTO" HOME="-90" VALUE="-90" />
+        <simple_rotary X="350.0" Y="0.0" Z="675.0" I="0" J="1" K="0" />
+      </axis>
+      <model_list>
+        <dmt_file>
+          <path FILE="KR300-R2500/BC.dmt" />
+          <rgb R="255" G="110" B="0" />
+        </dmt_file>
+        <dmt_file>
+          <path FILE="KR300-R2500/BCMotor.dmt" />
+          <rgb R="50" G="50" B="50" />
+        </dmt_file>
+      </model_list>
+
+      <machine_part NAME="Piston">
+        <link>
+          <rotary X="150" Y="0.0" Z="675" I="0" J="1" K="0" />
+        </link>
+        <model_list>
+          <dmt_file>
+            <path FILE="KR300-R2500/ABPiston.dmt" />
+            <rgb R="50" G="50" B="50" />
+          </dmt_file>
+        </model_list>
+
+        <machine_part NAME="Cylinder">
+          <link>
+            <linear I="-0.993248" J="0" K="-0.116012" />
+            <fixed_point NAME="CylinderAttachPoint" />
+          </link>
+          <model_list>
+            <dmt_file>
+              <path FILE="KR300-R2500/ABCylinder.dmt" />
+              <rgb R="50" G="50" B="50" />
+            </dmt_file>
+          </model_list>
+
+        </machine_part>
+      </machine_part>
+
+      <machine_part NAME="RobotAxis3">
+        <axis>
+          <control_info ADDRESS="C" MIN="-120" MAX="155" PRIORITY="AUTO" HOME="90" VALUE="90"/>
+          <simple_rotary X="350.0" Y="0.0" Z="1825.0" I="0" J="1" K="0" />
+        </axis>
+        <model_list>
+          <dmt_file>
+            <path FILE="KR300-R2500/CD.dmt" />
+            <rgb R="255" G="110" B="0" />
+          </dmt_file>
+          <dmt_file>
+            <path FILE="KR300-R2500/CDMotor.dmt" />
+            <rgb R="50" G="50" B="50" />
+          </dmt_file>
+          <dmt_file>
+            <path FILE="KR300-R2500/CDName1.dmt" />
+            <rgb R="255" G="110" B="0" />
+          </dmt_file>
+          <dmt_file>
+            <path FILE="KR300-R2500/CDName2.dmt" />
+            <rgb R="255" G="110" B="0" />
+          </dmt_file>
+        </model_list>
+
+        <machine_part NAME="RobotAxis4">
+          <axis>
+            <control_info ADDRESS="D" MIN="-350" MAX="350" PRIORITY="AUTO" HOME="0"/>
+            <simple_rotary X="0.0" Y="0.0" Z="1784.0" I="-1" J="0" K="0" />
+          </axis>
+          <model_list>
+            <dmt_file>
+              <path FILE="KR300-R2500/DE.dmt" />
+              <rgb R="255" G="110" B="0" />
+            </dmt_file>
+          </model_list>
+
+          <machine_part NAME="RobotAxis5">
+            <axis>
+              <control_info ADDRESS="E" MIN="-122" MAX="122" PRIORITY="AUTO" HOME="-20"/>
+              <simple_rotary X="1350.0" Y="0.0" Z="1784.0" I="0" J="1" K="0" />
+            </axis>
+            <model_list>
+              <dmt_file>
+                <path FILE="KR300-R2500/EF.dmt" />
+                <rgb R="255" G="110" B="0" />
+              </dmt_file>
+            </model_list>
+
+            <machine_part NAME="RobotAxis6">
+              <axis>
+                <control_info ADDRESS="F" MIN="-350" MAX="350" PRIORITY="AUTO" HOME="0"/>
+                <simple_rotary X="0.0" Y="0.0" Z="1784.0" I="-1" J="0" K="0" />
+              </axis>
+              <model_list>
+                <dmt_file>
+                  <path FILE="KR300-R2500/F.dmt" />
+                  <rgb R="50" G="50" B="50" />
+                </dmt_file>
+                <dmt_file>
+                  <path FILE="KR300-R2500/Spindle.dmt" />
+                  <rgb R="100" G="100" B="100" />
+                </dmt_file>
+              </model_list>
+
+              <machine_part NAME="head" />
+
+            </machine_part>
+          </machine_part>
+        </machine_part>
+      </machine_part>
+    </machine_part>
+  </machine_part>
+
+  <!-- Rotary axis controlled by auxiliary axis -->
+  <machine_part NAME="RotaryTable">
+    <axis>
+      <control_info ADDRESS="T" PRIORITY="STATIC" MIN="-36000" MAX="36000" HOME="0" VALUE="0"/>
+      <simple_rotary X="2000" Y="0" Z="0" I="0" J="0" K="-1" />
+    </axis>
+    <model_list>
+      <dmt_file>
+        <path FILE="KR300-R2500/RotaryTableDynamic.dmt" />
+        <rgb R="125" G="125" B="125" />
+      </dmt_file>
+    </model_list>
+
+    <machine_part NAME="table" />
+
+  </machine_part>
+
+</machine>

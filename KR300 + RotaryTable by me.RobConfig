@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <File VERSION="4" />
+  <Robot MANUFACTURER="KUKA" NAME="KR300-R2500 Quantec - KRC4" PART="TABLE" />
+  <PostProcessor Name="KUKA.KRL" />
+  <Workplanes A1="AUTO" A2="AUTO" A3="AUTO" A4="AUTO" A5="AUTO" A6="AUTO" E1="AUTO" E2="AUTO" E3="AUTO" E4="AUTO" E5="AUTO" E6="AUTO" E7="AUTO" E8="AUTO" E9="AUTO" E10="AUTO" E11="AUTO" E12="AUTO">
+    <Workplane Name="KUKA World Workplane" X="0" Y="0" Z="0" Rz="AUTO" Ry="AUTO" Rx="AUTO" Type="RobotWorld" />
+    <Workplane Name="KUKA 6th axis Workplane" X="1590" Y="0" Z="1784" Rz="AUTO" Ry="AUTO" Rx="AUTO" Type="RobotAxis6" />
+    <Workplane Name="Rotary Table Center" X="2000" Y="0" Z="730" Rz="0" Ry="0" Rx="0" Type="User1" />
+  </Workplanes>
+</Config>
